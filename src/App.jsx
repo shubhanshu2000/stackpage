@@ -1,9 +1,12 @@
+import { DataContextProvider } from "./components/context_reducer/context";
 import Home from "./components/Home";
 
 function App() {
   return (
     <div className="App">
-      <Home />
+      <DataContextProvider>
+        <Home />
+      </DataContextProvider>
     </div>
   );
 }

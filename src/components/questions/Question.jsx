@@ -31,7 +31,7 @@ const Question = ({ d }) => {
             </p>
           </div>
         </div>
-        <div className="flex justify-around   w-2/5 pr-4">
+        <div className="flex justify-around   w-2/5 ">
           <div className="text-center hover:rounded-lg hover:shadow-xl p-4">
             <p>{d.score}</p>
             <p className="mb-2">votes</p>

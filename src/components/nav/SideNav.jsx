@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   BsQuestion,
   BsBag,
@@ -10,14 +10,20 @@ import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { HiOutlineDocumentText, HiOutlineSpeakerphone } from "react-icons/hi";
 import { FaRegUser, FaStackExchange } from "react-icons/fa";
 import logo from "../../assets/logo.svg";
+import dataContext from "../context_reducer/context";
 
 const SideNav = () => {
+  const { view, setView, data } = useContext(dataContext);
+
   return (
     <>
-      <div className="w-1/6  ">
-        <aside className="shadow-2xl h-full ">
+      <div className={`w-1/6 ${!view && "hidden"} `}>
+        <aside className={`shadow-2xl  ${data ? "h-full" : "h-screen"} `}>
           <img src={logo} alt="l" className="mx-auto mb-12 pt-6" />
-          <MdOutlineKeyboardArrowLeft className="float-right border-t-2 border-b-2 border-l-2  w-6  rounded-l-xl mb-2" />
+          <MdOutlineKeyboardArrowLeft
+            onClick={() => setView(false)}
+            className="float-right border-t-2 border-b-2 border-l-2  w-6  rounded-l-xl mb-2"
+          />
           <nav>
             <ul className="pt-4 ">
               <li>
