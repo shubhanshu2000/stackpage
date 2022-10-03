@@ -5,24 +5,26 @@ import { GoGlobe } from "react-icons/go";
 const Job = () => {
   return (
     <>
-      <div>
-        <h2>Front End Developer with Angular</h2>
+      <div className="px-10 py-4">
+        <a href="#" className="text-blue-400">
+          Front End Developer with Angular
+        </a>
         <p>WalletHub</p>
         <div>
-          <div>
+          <div className="flex items-center">
             <IoLocationOutline />
-            <p>Washington, DC</p>
+            <p className="ml-2">Washington, DC</p>
           </div>
-          <div>
+          <div className="flex items-center">
             <GoGlobe />
-            <p>Remote</p>
+            <p className="ml-2">Remote</p>
           </div>
         </div>
         <div>
-          <a>angular js</a>
-          <a>cordova</a>
+          <a className="mr-4 border my-1 px-2 rounded-3xl">angular js</a>
+          <a className="mr-4 border my-1 px-2 rounded-3xl">cordova</a>
         </div>
-        <hr />
+        <hr className="mt-8" />
       </div>
     </>
   );

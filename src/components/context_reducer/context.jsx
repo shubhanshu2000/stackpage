@@ -1,24 +1,31 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useReducer } from "react";
+import { ACTIONS } from "./ACTIONS";
+import { dataReducer } from "./reducers";
 
 const dataContext = createContext();
 
 export const DataContextProvider = ({ children }) => {
-  const [data, setData] = useState([]);
-  const [view, setView] = useState(false);
+  const [state, dispatch] = useReducer(dataReducer, {
+    data: [],
+    view: false,
+    inputVal: "",
+  });
+
   const url =
     "https://api.stackexchange.com/2.3/questions?order=desc&sort=activity&site=stackoverflow";
 
   const getData = async () => {
     const getD = await fetch(url);
     const resD = await getD.json();
-    setData(resD.items);
+
+    dispatch({ type: ACTIONS.DATA, payload: resD.items });
   };
 
   useEffect(() => {
     getData();
   }, []);
   return (
-    <dataContext.Provider value={{ data, view, setView }}>
+    <dataContext.Provider value={{ state, dispatch }}>
       {children}
     </dataContext.Provider>
   );

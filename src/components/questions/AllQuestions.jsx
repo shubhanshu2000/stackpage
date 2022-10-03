@@ -3,7 +3,22 @@ import dataContext from "../context_reducer/context";
 import Question from "./Question";
 
 const AllQuestions = () => {
-  const { data, view } = useContext(dataContext);
+  const {
+    state: { data, inputVal },
+    dispatch,
+  } = useContext(dataContext);
+
+  function implementFilter() {
+    let sortProducts = data;
+
+    if (inputVal) {
+      sortProducts = sortProducts.filter((d) =>
+        d.title.toLowerCase().includes(inputVal)
+      );
+    }
+
+    return sortProducts;
+  }
 
   return (
     <>
@@ -60,13 +75,15 @@ const AllQuestions = () => {
         </div>
         <hr />
         <div className=" mx-8">
-          {data?.slice(0, 10).map((d) => {
-            return (
-              <>
-                <Question d={d} />
-              </>
-            );
-          })}
+          {implementFilter()
+            ?.slice(0, 10)
+            .map((d) => {
+              return (
+                <>
+                  <Question d={d} />
+                </>
+              );
+            })}
         </div>
       </div>
     </>

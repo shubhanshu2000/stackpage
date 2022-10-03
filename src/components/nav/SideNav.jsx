@@ -11,17 +11,21 @@ import { HiOutlineDocumentText, HiOutlineSpeakerphone } from "react-icons/hi";
 import { FaRegUser, FaStackExchange } from "react-icons/fa";
 import logo from "../../assets/logo.svg";
 import dataContext from "../context_reducer/context";
+import { ACTIONS } from "../context_reducer/ACTIONS";
 
 const SideNav = () => {
-  const { view, setView, data } = useContext(dataContext);
+  const {
+    state: { view },
+    dispatch,
+  } = useContext(dataContext);
 
   return (
     <>
       <div className={`w-1/6 ${!view && "hidden"} `}>
-        <aside className={`shadow-2xl  ${data ? "h-full" : "h-screen"} `}>
+        <aside className={`shadow-2xl  h-full`}>
           <img src={logo} alt="l" className="mx-auto mb-12 pt-6" />
           <MdOutlineKeyboardArrowLeft
-            onClick={() => setView(false)}
+            onClick={() => dispatch({ type: ACTIONS.VIEW, payload: !view })}
             className="float-right border-t-2 border-b-2 border-l-2  w-6  rounded-l-xl mb-2"
           />
           <nav>

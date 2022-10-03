@@ -6,23 +6,32 @@ import { GrMonitor } from "react-icons/gr";
 import { IoIosArrowDown } from "react-icons/io";
 import r from "../../assets/react.svg";
 import AllQuestions from "../questions/AllQuestions";
-import AllJobs from "../sidedata/jobs/allJobs";
 import dataContext from "../context_reducer/context";
+import Sidedata from "../sidedata/sidedata";
+import { ACTIONS } from "../context_reducer/ACTIONS";
 
 const TopNav = () => {
-  const { view, setView } = useContext(dataContext);
+  const {
+    state: { view },
+    dispatch,
+  } = useContext(dataContext);
 
   return (
     <>
       <div className={` ${view ? "w-5/6" : "w-full"}`}>
         <nav className="flex justify-between items-center p-6 ">
-          <GiHamburgerMenu onClick={() => setView(true)} />
+          <GiHamburgerMenu
+            onClick={() => dispatch({ type: ACTIONS.VIEW, payload: !view })}
+          />
           <div className="flex w-3/4 items-center">
             <BiSearch />
             <input
               className="w-full ml-2 outline-none"
               type="text"
               placeholder="Search"
+              onChange={(e) =>
+                dispatch({ type: ACTIONS.INPUT_VAL, payload: e.target.value })
+              }
             />
           </div>
           <div className="flex items-center">
@@ -41,8 +50,8 @@ const TopNav = () => {
         <hr />
         <div className="flex">
           <AllQuestions />
-          <div className={`${view ? "w-1/6" : "w-1/3"}`}>
-            <AllJobs />
+          <div className={`w-1/3`}>
+            <Sidedata />
           </div>
         </div>
       </div>
