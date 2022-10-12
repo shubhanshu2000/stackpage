@@ -22,7 +22,9 @@ const SideNav = () => {
   return (
     <>
       <div className={`w-1/6 ${!view && "hidden"} `}>
-        <aside className={`shadow-2xl  h-full`}>
+        <aside
+          className={`shadow-[0_-50px_50px_-15px_rgba(0,0,0,0.3)]  h-full`}
+        >
           <img src={logo} alt="l" className="mx-auto mb-12 pt-6" />
           <MdOutlineKeyboardArrowLeft
             onClick={() => dispatch({ type: ACTIONS.VIEW, payload: !view })}
