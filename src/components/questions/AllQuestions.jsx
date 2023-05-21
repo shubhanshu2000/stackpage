@@ -12,7 +12,7 @@ const AllQuestions = () => {
 
     if (inputVal) {
       sortProducts = sortProducts.filter((d) =>
-        d.title.toLowerCase().includes(inputVal)
+        d.title.toLowerCase().includes(inputVal.toLowerCase())
       );
     }
 
